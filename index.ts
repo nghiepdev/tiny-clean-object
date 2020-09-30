@@ -35,7 +35,12 @@ export function cleanObject<O extends Record<string, unknown>>(
     const value = obj[key];
 
     if (deep && isPlainObject(value)) {
-      cleanObject(value, options);
+      cleanObject(value, {
+        deep,
+        emptyStrings,
+        emptyArrays,
+        emptyObjects,
+      });
     }
 
     if (value == null) {
