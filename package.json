@@ -1,0 +1,32 @@
+{
+  "name": "tiny-clean-object",
+  "version": "0.0.1",
+  "description": "A tiny and fast utility to clean deep object",
+  "keywords": [
+    "clean-object",
+    "clean-deep-object"
+  ],
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "files": [
+    "LICENCE",
+    "README.md"
+  ],
+  "scripts": {
+    "build": "tsc",
+    "prepublishOnly": "npm run build"
+  },
+  "devDependencies": {
+    "typescript": "^4.0.3"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/nghiepit/tiny-clean-object.git"
+  },
+  "bugs": {
+    "url": "https://github.com/nghiepit/tiny-clean-object/issues"
+  },
+  "homepage": "https://github.com/nghiepit/tiny-clean-object",
+  "author": "Nghiep <me@nghiepit.dev>",
+  "license": "MIT"
+}
