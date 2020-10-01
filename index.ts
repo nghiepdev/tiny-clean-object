@@ -34,15 +34,6 @@ export function cleanObject<O extends Record<string, unknown>>(
   for (const key in obj) {
     const value = obj[key];
 
-    if (deep && isPlainObject(value)) {
-      cleanObject(value, {
-        deep,
-        emptyStrings,
-        emptyArrays,
-        emptyObjects,
-      });
-    }
-
     if (value == null) {
       delete obj[key];
       continue;
@@ -53,23 +44,29 @@ export function cleanObject<O extends Record<string, unknown>>(
       continue;
     }
 
-    if (typeof value === 'number' && !isFinite(value)) {
+    if (typeof value === 'number' && false === isFinite(value)) {
       delete obj[key];
       continue;
     }
 
-    if (typeof value === 'object') {
-      if (emptyArrays && Array.isArray(value) && value.length === 0) {
+    if (emptyArrays && Array.isArray(value) && value.length === 0) {
+      delete obj[key];
+      continue;
+    }
+
+    if (isPlainObject(value)) {
+      if (emptyObjects && Object.keys(value).length === 0) {
         delete obj[key];
         continue;
       }
 
-      if (
-        emptyObjects &&
-        isPlainObject(value) &&
-        Object.keys(value).length === 0
-      ) {
-        delete obj[key];
+      if (deep) {
+        cleanObject(value, {
+          deep,
+          emptyStrings,
+          emptyArrays,
+          emptyObjects,
+        });
       }
     }
   }
