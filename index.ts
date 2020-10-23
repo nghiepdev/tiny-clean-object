@@ -1,13 +1,15 @@
 interface Options {
   deep?: boolean;
   emptyStrings?: boolean;
+  emptyInvalidNumbers?: boolean;
   emptyArrays?: boolean;
   emptyObjects?: boolean;
 }
 
 const defaultOptions: Options = {
   deep: false,
-  emptyStrings: false,
+  emptyStrings: true,
+  emptyInvalidNumbers: true,
   emptyArrays: false,
   emptyObjects: false,
 };
@@ -28,6 +30,8 @@ export function cleanObject<O extends Record<string, unknown>>(
 ): O {
   const deep = options.deep ?? defaultOptions.deep;
   const emptyStrings = options.emptyStrings ?? defaultOptions.emptyStrings;
+  const emptyInvalidNumbers =
+    options.emptyInvalidNumbers ?? defaultOptions.emptyInvalidNumbers;
   const emptyArrays = options.emptyArrays ?? defaultOptions.emptyArrays;
   const emptyObjects = options.emptyObjects ?? defaultOptions.emptyObjects;
 
@@ -44,7 +48,11 @@ export function cleanObject<O extends Record<string, unknown>>(
       continue;
     }
 
-    if (typeof value === 'number' && false === isFinite(value)) {
+    if (
+      emptyInvalidNumbers &&
+      typeof value === 'number' &&
+      isFinite(value) === false
+    ) {
       delete obj[key];
       continue;
     }

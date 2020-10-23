@@ -38,7 +38,7 @@ const object = {
   k: '',
 };
 
-cleanObject(object, {deep: true});
+cleanObject(object, {deep: true, emptyObjects: true});
 ```
 
 Result
@@ -50,25 +50,22 @@ Result
   "g": {
     "deep": "ok",
     "deep2": {
-      "obj": {},
-      "arr": [],
-      "empty": ""
+      "arr": []
     }
   },
-  "h": [],
-  "i": {},
-  "k": ""
+  "h": []
 }
 ```
 
 ## Options
 
-| Option         | Default value | Description                    |
-| -------------- | ------------- | ------------------------------ |
-| _deep_         | _false_       | Recursive. Clean deep object   |
-| _emptyArrays_  | _false_       | Remove empty arrays, ie: `[]`  |
-| _emptyObjects_ | _false_       | Remove empty objects, ie: `{}` |
-| _emptyStrings_ | _false_       | Remove empty strings, ie: `''` |
+| Option                | Default value | Description                    |
+| --------------------- | ------------- | ------------------------------ |
+| _deep_                | _false_       | Recursive. Clean deep object   |
+| _emptyStrings_        | _true_        | Remove empty strings, ie: `''` |
+| _emptyInvalidNumbers_ | _true_        | Remove `NaN` and `Infinity`    |
+| _emptyArrays_         | _false_       | Remove empty arrays, ie: `[]`  |
+| _emptyObjects_        | _false_       | Remove empty objects, ie: `{}` |
 
 ## License
 
