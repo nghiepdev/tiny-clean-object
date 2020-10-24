@@ -72,6 +72,7 @@ export function cleanObject<O extends Record<string, unknown>>(
         cleanObject(value, {
           deep,
           emptyStrings,
+          emptyInvalidNumbers,
           emptyArrays,
           emptyObjects,
         });
