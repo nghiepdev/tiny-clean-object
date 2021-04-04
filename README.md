@@ -13,7 +13,7 @@ yarn add tiny-clean-object
 
 Example:
 
-```js
+```ts
 import {cleanObject} from 'tiny-clean-object';
 
 const object = {
@@ -69,4 +69,4 @@ Result
 
 ## License
 
-MIT © [Nghiep](mailto:me@nghiepit.dev)
+MIT
