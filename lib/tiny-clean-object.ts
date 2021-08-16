@@ -3,6 +3,7 @@ import {Options} from './types';
 
 const defaultOptions: Options = {
   deep: false,
+  skipNull: false,
   emptyStrings: true,
   emptyInvalidNumbers: true,
   emptyArrays: false,
@@ -14,6 +15,7 @@ export function cleanObject<O extends Record<string, unknown>>(
   options = defaultOptions
 ): O {
   const deep = options.deep ?? defaultOptions.deep;
+  const skipNull = options.skipNull ?? defaultOptions.skipNull;
   const emptyStrings = options.emptyStrings ?? defaultOptions.emptyStrings;
   const emptyInvalidNumbers =
     options.emptyInvalidNumbers ?? defaultOptions.emptyInvalidNumbers;
@@ -23,9 +25,16 @@ export function cleanObject<O extends Record<string, unknown>>(
   for (const key in obj) {
     const value = obj[key];
 
-    if (value == null) {
-      delete obj[key];
-      continue;
+    if (skipNull) {
+      if (value === undefined) {
+        delete obj[key];
+        continue;
+      }
+    } else {
+      if (value == undefined) {
+        delete obj[key];
+        continue;
+      }
     }
 
     if (emptyStrings && value === '') {
@@ -56,6 +65,7 @@ export function cleanObject<O extends Record<string, unknown>>(
       if (deep) {
         cleanObject(value, {
           deep,
+          skipNull,
           emptyStrings,
           emptyInvalidNumbers,
           emptyArrays,

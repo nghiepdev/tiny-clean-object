@@ -59,13 +59,14 @@ Result
 
 ## Options
 
-| Option                | Default value | Description                    |
-| --------------------- | ------------- | ------------------------------ |
-| _deep_                | _false_       | Recursive. Clean deep object   |
-| _emptyStrings_        | _true_        | Remove empty strings, ie: `''` |
-| _emptyInvalidNumbers_ | _true_        | Remove `NaN` and `Infinity`    |
-| _emptyArrays_         | _false_       | Remove empty arrays, ie: `[]`  |
-| _emptyObjects_        | _false_       | Remove empty objects, ie: `{}` |
+| Option                | Default value | Description                      |
+| --------------------- | ------------- | -------------------------------- |
+| _deep_                | _false_       | Recursive. Clean deep object     |
+| _skipNull_            | _false_       | Skip keys with null as the value |
+| _emptyStrings_        | _true_        | Remove empty strings, ie: `''`   |
+| _emptyInvalidNumbers_ | _true_        | Remove `NaN` and `Infinity`      |
+| _emptyArrays_         | _false_       | Remove empty arrays, ie: `[]`    |
+| _emptyObjects_        | _false_       | Remove empty objects, ie: `{}`   |
 
 ## License
 
