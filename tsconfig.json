@@ -5,7 +5,8 @@
     "declaration": true,
     "outDir": "./dist",
     "strict": true,
-    "removeComments": true
+    "removeComments": true,
+    "types": ["jest"]
   },
   "exclude": ["dist"]
 }

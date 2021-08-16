@@ -11,7 +11,7 @@
 yarn add tiny-clean-object
 ```
 
-Example:
+### Example:
 
 ```ts
 import {cleanObject} from 'tiny-clean-object';
@@ -41,7 +41,7 @@ const object = {
 cleanObject(object, {deep: true, emptyObjects: true});
 ```
 
-Result
+### Result
 
 ```json
 {
