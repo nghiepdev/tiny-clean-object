@@ -1,7 +1,7 @@
 # tiny-clean-object
 
 [![NPM version](https://img.shields.io/npm/v/tiny-clean-object.svg)](https://www.npmjs.com/package/tiny-clean-object)
-[![NPM yearly download](https://img.shields.io/npm/dy/tiny-clean-object.svg)](https://www.npmjs.com/package/tiny-clean-object)
+[![NPM monthly download](https://img.shields.io/npm/dm/tiny-clean-object.svg)](https://www.npmjs.com/package/tiny-clean-object)
 
 > A tiny and fast utility to clean deep object
 
