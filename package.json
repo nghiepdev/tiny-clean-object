@@ -1,6 +1,6 @@
 {
   "name": "tiny-clean-object",
-  "version": "1.0.1",
+  "version": "1.1.0",
   "description": "A tiny and fast utility to clean deep object",
   "keywords": [
     "clean-object",
