@@ -1,4 +1,4 @@
-import {isPlainObject} from './utils';
+import {isPlainObject, recursiveClone} from './utils';
 import {Options} from './types';
 
 const defaultOptions: Options = {
@@ -11,7 +11,7 @@ const defaultOptions: Options = {
 };
 
 export function cleanObject<O extends Record<string, unknown>>(
-  obj: O,
+  originalObj: O,
   options = defaultOptions
 ): O {
   const deep = options.deep ?? defaultOptions.deep;
@@ -21,6 +21,8 @@ export function cleanObject<O extends Record<string, unknown>>(
     options.emptyInvalidNumbers ?? defaultOptions.emptyInvalidNumbers;
   const emptyArrays = options.emptyArrays ?? defaultOptions.emptyArrays;
   const emptyObjects = options.emptyObjects ?? defaultOptions.emptyObjects;
+
+  const obj = recursiveClone(originalObj);
 
   for (const key in obj) {
     const value = obj[key];
@@ -57,13 +59,8 @@ export function cleanObject<O extends Record<string, unknown>>(
     }
 
     if (isPlainObject(value)) {
-      if (emptyObjects && Object.keys(value).length === 0) {
-        delete obj[key];
-        continue;
-      }
-
       if (deep) {
-        cleanObject(value, {
+        obj[key] = cleanObject(value, {
           deep,
           skipNull,
           emptyStrings,
@@ -71,6 +68,11 @@ export function cleanObject<O extends Record<string, unknown>>(
           emptyArrays,
           emptyObjects,
         });
+      }
+
+      if (emptyObjects && Object.keys(obj[key] as {}).length === 0) {
+        delete obj[key];
+        continue;
       }
     }
   }

@@ -1,18 +1,19 @@
-import {cleanObject} from '../lib/tiny-clean-object';
-import {source} from './source-tests';
-
-jest.mock('./source-tests');
+import { cleanObject } from '../lib/tiny-clean-object';
+import { source } from './source-tests';
 
 test('with default options', () => {
-  expect(cleanObject(source)).toMatchObject({
+  expect(cleanObject(source)).toEqual({
     a: 'ok',
     b: 123,
     g: {
       deep: 'ok',
       deep2: {
         obj: {},
+        empty: '',
         arr: [],
       },
+      deep3: null,
+      deep4: NaN,
     },
     h: [],
     i: {},
@@ -20,16 +21,20 @@ test('with default options', () => {
 });
 
 test('with {deep: true, skipNull: true} options', () => {
-  expect(cleanObject(source, {deep: true, skipNull: true})).toMatchObject({
+  expect(cleanObject(source, { deep: true, skipNull: true })).toEqual({
     a: 'ok',
     b: 123,
+    c: null,
     g: {
       deep: 'ok',
       deep2: {
         arr: [],
+        obj: {},
       },
+      deep3: null,
     },
     h: [],
+    i: {},
   });
 });
 
@@ -39,7 +44,7 @@ test('with {deep: true, emptyStrings: false} options', () => {
       deep: true,
       emptyStrings: false,
     })
-  ).toMatchObject({
+  ).toEqual({
     a: 'ok',
     b: 123,
     g: {
@@ -47,9 +52,11 @@ test('with {deep: true, emptyStrings: false} options', () => {
       deep2: {
         arr: [],
         empty: '',
+        obj: {},
       },
     },
     h: [],
+    i: {},
     k: '',
   });
 });
@@ -60,7 +67,7 @@ test('with {deep: true, emptyInvalidNumbers: false} options', () => {
       deep: true,
       emptyInvalidNumbers: false,
     })
-  ).toMatchObject({
+  ).toEqual({
     a: 'ok',
     b: 123,
     e: NaN,
@@ -79,7 +86,7 @@ test('with {deep: true, emptyInvalidNumbers: false} options', () => {
 });
 
 test('with {deep: true, emptyArrays: true} options', () => {
-  expect(cleanObject(source, {deep: true, emptyArrays: true})).toMatchObject({
+  expect(cleanObject(source, { deep: true, emptyArrays: true })).toEqual({
     a: 'ok',
     b: 123,
     g: {
@@ -93,7 +100,7 @@ test('with {deep: true, emptyArrays: true} options', () => {
 });
 
 test('with {deep: true, emptyObjects: true} options', () => {
-  expect(cleanObject(source, {deep: true, emptyObjects: true})).toMatchObject({
+  expect(cleanObject(source, { deep: true, emptyObjects: true })).toEqual({
     a: 'ok',
     b: 123,
     g: {
@@ -104,4 +111,16 @@ test('with {deep: true, emptyObjects: true} options', () => {
     },
     h: [],
   });
+});
+
+test('objects are recursively cleaned up', () => {
+  const clean = cleanObject(
+    { o: { b: {} } },
+    {
+      deep: true,
+      emptyObjects: true,
+    }
+  );
+
+  expect(clean).toEqual({});
 });
