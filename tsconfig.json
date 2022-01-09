@@ -8,5 +8,5 @@
     "removeComments": true,
     "types": ["jest"]
   },
-  "exclude": ["dist"]
+  "exclude": ["dist", "test"]
 }
