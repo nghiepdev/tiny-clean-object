@@ -10,10 +10,7 @@ const defaultOptions: Options = {
   emptyObjects: false,
 };
 
-export function cleanObject<O extends Record<string, unknown>>(
-  originalObj: O,
-  options = defaultOptions
-): O {
+export function cleanObject<O>(originalObj: O, options = defaultOptions): O {
   const deep = options.deep ?? defaultOptions.deep;
   const skipNull = options.skipNull ?? defaultOptions.skipNull;
   const emptyStrings = options.emptyStrings ?? defaultOptions.emptyStrings;
@@ -39,7 +36,7 @@ export function cleanObject<O extends Record<string, unknown>>(
       }
     }
 
-    if (emptyStrings && value === '') {
+    if (emptyStrings && typeof value === 'string' && value === '') {
       delete obj[key];
       continue;
     }

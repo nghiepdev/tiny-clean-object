@@ -9,8 +9,9 @@ export function isPlainObject(value: unknown): value is {} {
 }
 
 // Refer https://github.com/you-dont-need/You-Dont-Need-Lodash-Underscore/issues/121#issuecomment-505082672
-export function recursiveClone<O extends Record<string, unknown>>(obj: O): O {
-  let target = {} as O;
+// TODO: Replace with structuredClone
+export function recursiveClone<O>(obj: O): O {
+  const target = {} as O;
   for (const key in obj) {
     const value = obj[key];
     if (isPlainObject(value)) {
