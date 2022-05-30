@@ -1,6 +1,10 @@
 import {isPlainObject, recursiveClone} from './utils';
 import {Options} from './types';
 
+/**
+ * @const {Options}
+ * @default
+ */
 const defaultOptions: Options = {
   deep: false,
   skipNull: false,
@@ -10,6 +14,11 @@ const defaultOptions: Options = {
   emptyObjects: false,
 };
 
+/**
+ * A tiny and fast utility to clean deep object
+ * @param {Record<string, unknown>} originalObj
+ * @param {Options} [options]
+ */
 export function cleanObject<O>(originalObj: O, options = defaultOptions): O {
   const deep = options.deep ?? defaultOptions.deep;
   const skipNull = options.skipNull ?? defaultOptions.skipNull;

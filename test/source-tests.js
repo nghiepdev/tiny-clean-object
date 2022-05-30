@@ -1,4 +1,4 @@
-export const source = {
+const source = {
   a: 'ok',
   b: 123,
   c: null,
@@ -19,3 +19,5 @@ export const source = {
   i: {},
   k: '',
 };
+
+exports.source = source;

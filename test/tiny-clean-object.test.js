@@ -1,5 +1,5 @@
-import { cleanObject } from '../lib/tiny-clean-object';
-import { source } from './source-tests';
+const {cleanObject} = require('../dist');
+const {source} = require('./source-tests');
 
 test('with default options', () => {
   expect(cleanObject(source)).toEqual({
@@ -21,7 +21,7 @@ test('with default options', () => {
 });
 
 test('with {deep: true, skipNull: true} options', () => {
-  expect(cleanObject(source, { deep: true, skipNull: true })).toEqual({
+  expect(cleanObject(source, {deep: true, skipNull: true})).toEqual({
     a: 'ok',
     b: 123,
     c: null,
@@ -86,7 +86,7 @@ test('with {deep: true, emptyInvalidNumbers: false} options', () => {
 });
 
 test('with {deep: true, emptyArrays: true} options', () => {
-  expect(cleanObject(source, { deep: true, emptyArrays: true })).toEqual({
+  expect(cleanObject(source, {deep: true, emptyArrays: true})).toEqual({
     a: 'ok',
     b: 123,
     g: {
@@ -100,7 +100,7 @@ test('with {deep: true, emptyArrays: true} options', () => {
 });
 
 test('with {deep: true, emptyObjects: true} options', () => {
-  expect(cleanObject(source, { deep: true, emptyObjects: true })).toEqual({
+  expect(cleanObject(source, {deep: true, emptyObjects: true})).toEqual({
     a: 'ok',
     b: 123,
     g: {
@@ -115,7 +115,7 @@ test('with {deep: true, emptyObjects: true} options', () => {
 
 test('objects are recursively cleaned up', () => {
   const clean = cleanObject(
-    { o: { b: {} } },
+    {o: {b: {}}},
     {
       deep: true,
       emptyObjects: true,

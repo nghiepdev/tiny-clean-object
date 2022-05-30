@@ -8,7 +8,7 @@
 ## Installation
 
 ```bash
-yarn add tiny-clean-object
+npm install tiny-clean-object
 ```
 
 ### Example:
