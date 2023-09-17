@@ -1,4 +1,4 @@
-import {isPlainObject, recursiveClone} from './utils';
+import {isPlainObject} from './utils';
 import {Options} from './types';
 
 /**
@@ -16,10 +16,10 @@ const defaultOptions: Options = {
 
 /**
  * A tiny and fast utility to clean deep object
- * @param {Record<string, unknown>} originalObj
+ * @param {Record<string, unknown>} obj
  * @param {Options} [options]
  */
-export function cleanObject<O>(originalObj: O, options = defaultOptions): O {
+export function cleanObject<O>(obj: O, options = defaultOptions): O {
   const deep = options.deep ?? defaultOptions.deep;
   const skipNull = options.skipNull ?? defaultOptions.skipNull;
   const emptyStrings = options.emptyStrings ?? defaultOptions.emptyStrings;
@@ -27,8 +27,6 @@ export function cleanObject<O>(originalObj: O, options = defaultOptions): O {
     options.emptyInvalidNumbers ?? defaultOptions.emptyInvalidNumbers;
   const emptyArrays = options.emptyArrays ?? defaultOptions.emptyArrays;
   const emptyObjects = options.emptyObjects ?? defaultOptions.emptyObjects;
-
-  const obj = recursiveClone(originalObj);
 
   for (const key in obj) {
     const value = obj[key];
