@@ -1,5 +1,11 @@
-const {cleanObject} = require('../dist');
-const {source} = require('./source-tests');
+const {cleanObject} = require('../dist/index.cjs');
+const {createSource} = require('./source-tests.cjs');
+
+let source;
+
+beforeEach(() => {
+  source = createSource();
+});
 
 test('with default options', () => {
   expect(cleanObject(source)).toEqual({

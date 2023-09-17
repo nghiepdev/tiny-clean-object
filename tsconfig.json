@@ -1,12 +1,13 @@
 {
   "compilerOptions": {
     "strict": true,
-    "target": "ES5",
-    "module": "ESNext",
-    "lib": ["DOM", "DOM.Iterable", "ES2017"],
+    "target": "es5",
+    "module": "esnext",
+    "lib": ["dom", "dom.iterable", "es2017"],
     "outDir": "dist",
     "moduleResolution": "node",
     "declaration": true
   },
-  "include": ["lib"]
+  "include": ["index", "lib"],
+  "exclude": ["node_modules", "dist"]
 }
